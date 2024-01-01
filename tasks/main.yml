@@ -99,3 +99,10 @@
 - name: Print variables
   ansible.builtin.debug:
     var: result
+
+- name: Fetch ~/.kube/config
+  ansible.builtin.fetch:
+    src: "~/.kube/config"
+    dest: /tmp/kubeconfig-{{ inventory_hostname }}
+    flat: yes
+  ignore_errors: true
