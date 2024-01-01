@@ -67,6 +67,16 @@
   ansible.builtin.debug:
     var: result
 
+- name: Exist Kind Cluster
+  ansible.builtin.shell: |
+    [ `lsb_release -i | cut -f2` = "Ubuntu" ] || set -o pipefail
+    kind get clusters
+  register: result
+
+- name: Print variables
+  ansible.builtin.debug:
+    var: result
+
 - name: Create Kind Cluster
   ansible.builtin.shell: |
     [ `lsb_release -i | cut -f2` = "Ubuntu" ] || set -o pipefail
