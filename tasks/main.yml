@@ -82,7 +82,7 @@
     [ `lsb_release -i | cut -f2` = "Ubuntu" ] || set -o pipefail
     kind create cluster --config {{ kind_config }}
   register: result
-  when: result.stderr
+  when: result.stderr # No kind clusters found
   changed_when: result.rc == 0
 
 - name: Print variables
