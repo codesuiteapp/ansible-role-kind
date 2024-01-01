@@ -1,6 +1,6 @@
 ---
 user_home: "~"
-kind_home: "{{ user_home }}/.config/kind/"
+kind_home: "{{ user_home }}/.config/kind"
 kind_config: "{{ kind_home }}/kind-config.yml"
 local_bin: "{{ user_local }}/bin"
 kind_ver: "0.20.0"

@@ -11,6 +11,15 @@
     - "{{ kind_home }}"
   register: result
 
+- name: Install kubectl
+  ansible.builtin.shell: |
+    [ `lsb_release -i | cut -f2` = "Ubuntu" ] || set -o pipefail
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    chmod +x ./kubectl
+    mv ./kubectl /usr/local/bin/kubectl
+  register: result
+  changed_when: result.rc == 0
+
 - name: Install kind
   ansible.builtin.shell: |
     [ `lsb_release -i | cut -f2` = "Ubuntu" ] || set -o pipefail
